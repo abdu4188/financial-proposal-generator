@@ -18,6 +18,9 @@ class ConstantField(models.Model):
     surtax = models.FloatField()
     withholdingTax = models.FloatField()
 
+    def __str__(self):
+        return "Constants"
+
 class User(models.Model):
     username =  models.CharField(max_length=100, default="user")
     password = models.CharField(max_length= 100)

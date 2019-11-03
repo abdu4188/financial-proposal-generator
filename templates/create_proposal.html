@@ -1,10 +1,74 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>New Financial Proposal</h2>
-    <form class="form-group" action="result/" method="get"> {% csrf_token %}
-        {{form.as_p}}
-        <input type="Submit" class="btn btn-primary" value="Create"/>
+
+    <form class="form-group" action="result/" method="post"> {% csrf_token %}
+        <div class="row col-sm-12">
+            <div class="col-sm-4" style="margin-left: 10vw;">
+                <h2>New Financial Proposal</h2>
+                    <label><Strong>File name:</Strong></label>
+                    {{form.file_name}}
+                    <label><Strong>Organization name:</Strong></label>
+                    {{form.organization_name}}
+                    <label><Strong>Project name:</Strong></label>
+                    {{form.project_type}}
+                    <label><Strong>Refrence number:</Strong></label>
+                    {{form.reference_number}}
+                    <label><Strong>Our reference number:</Strong></label>
+                    {{form.our_reference_number}}
+                    <label><Strong>Date:</Strong></label>
+                    {{form.date}}<br><br>
+                    
+            </div>
+        </div>
+        <div class="row col-sm-12">
+            <div class="col-sm-9" style="margin-left: 10vw;">
+                <table class="table-striped" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
+                    <tr>
+                        <th>
+                            <h5>No.</h5>
+                        </th>
+                        <th>
+                            <h5>Part no.</h5>
+                        </th>
+                        <th style="width:30vw">
+                            <h5>Description</h5>
+                        </th>
+                        <th>
+                            <h5>Quantity</h5>
+                        </th>
+                        <th>
+                            <h5>Unit Market price</h5>
+                        </th>
+                        <th>
+                            <h5>Markup percentage</h5>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{form.item_no}}
+                        </td>
+                        <td>
+                            {{form.part_no}}
+                        </td>
+                        <td>
+                            {{form.description}}
+                        </td>
+                        <td>
+                            {{form.quantity}}
+                        </td>
+                        <td>
+                            {{form.unit_market_price}}
+                        </td>
+                        <td>
+                            {{form.markup_percentage}}
+                        </td>
+                    </tr>
+                </table>
+                <br><br><input type="Submit" class="btn btn-primary" value="Create"/>
+            </div>
+            <buuton @click="addRow()" class="btn btn-primary">Add row</button>
+        </div>
     </form>
    
 {% endblock content %}

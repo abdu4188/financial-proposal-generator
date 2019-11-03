@@ -1,9 +1,11 @@
 {% load static %}
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <script src=" {% static 'vue.js' %}"></script>
+        <script src=" {% static 'jquery.min.js' %}"></script>
     </head>
-    <body>
+    <body  onload="createTable()">
         <header>
             <center>
                 UT Solutions Financial proposal Generator
