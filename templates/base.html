@@ -9,13 +9,13 @@
     <body>
         <header>
             <center>
-                UT Solutions Financial proposal Generator
+                <h2>UT Solutions Financial proposal Generator</h2>
             </center>
         </header>
 
         {% if user.is_authenticated %}
-            <p> Hello, {{user.username}}</p>
-            <a href="{% url 'logout' %}">Logout</a>
+            <h4> Hello, {{user.username}}</h4>
+            <h5><a href="{% url 'logout' %}">Logout</a></h5>
             {% block content %}
             {% endblock content %}
 
