@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <form class="input-form form-group" action="" method="post"> {% csrf_token %}
+    <form class="input-form form-group" action="/result" method="post"> {% csrf_token %}
         <div class="row col-sm-12">
             <div class="col-sm-4" style="margin-left: 10vw;">
                 <h3><em>New Financial Proposal</em></h3>
@@ -19,9 +19,6 @@
                     <label><Strong>Date:</Strong></label>
                     {{form.date}}<br><br>
                     
-            </div>
-            <div class="col-sm-3" style="margin-left: 30vw; margin-top: 70vh;">
-                <button onclick="addRow()" class="btn btn-warning">Add row</button>
             </div>
         </div>
         <div class="row col-sm-12">
@@ -56,6 +53,7 @@
             </div>
         </div>
     </form>
+    <button style="margin-left: 80vw; margin-bottom: 10vh;" onclick="addRow()" class="btn btn-warning">Add row</button>
     <script>
 
         // ARRAY FOR HEADER.
