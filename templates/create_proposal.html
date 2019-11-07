@@ -70,7 +70,6 @@
 
         // ADD A NEW ROW TO THE TABLE.s
         function addRow() {
-            console.log(count);
             count++;
             var empTab = document.getElementById('empTable');
 
@@ -202,8 +201,6 @@
                 'our_reference_number': document.getElementById('id_our_reference_number').value,
                 'date': document.getElementById('id_date').value,                
             }
-            console.log(dataJson);
-            console.log("before json");
 
             $.ajax({
                 url: '/ajax/result/',

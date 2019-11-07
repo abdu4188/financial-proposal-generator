@@ -6,10 +6,8 @@ import json
 from django.http import JsonResponse
 
 def inputPage(request):
-
     
     form = createNewFinancial()
-    print("inputPage")
     return render(request, 'create_proposal.html', {'form': form})
 
 def resultPage(request):
