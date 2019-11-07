@@ -1,4 +1,3 @@
-from __future__ import print_function
 from mailmerge import MailMerge
 from .unit_price import calculateUitPrice
 from django.http import JsonResponse
