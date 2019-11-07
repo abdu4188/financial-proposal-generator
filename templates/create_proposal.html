@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <form class="form-group" action="result/" method="post"> {% csrf_token %}
+    <form class="input-form form-group" action="" method="post"> {% csrf_token %}
         <div class="row col-sm-12">
             <div class="col-sm-4" style="margin-left: 10vw;">
                 <h2>New Financial Proposal</h2>
@@ -23,8 +23,11 @@
         </div>
         <div class="row col-sm-12">
             <div class="col-sm-9" style="margin-left: 10vw;">
-                <table class="table-striped" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
+                <table id="empTable" class="table-striped" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
                     <tr>
+                        <th>
+                            <h5></h5>
+                        </th>
                         <th>
                             <h5>No.</h5>
                         </th>
@@ -44,31 +47,186 @@
                             <h5>Markup percentage</h5>
                         </th>
                     </tr>
-                    <tr>
-                        <td>
-                            {{form.item_no}}
-                        </td>
-                        <td>
-                            {{form.part_no}}
-                        </td>
-                        <td>
-                            {{form.description}}
-                        </td>
-                        <td>
-                            {{form.quantity}}
-                        </td>
-                        <td>
-                            {{form.unit_market_price}}
-                        </td>
-                        <td>
-                            {{form.markup_percentage}}
-                        </td>
-                    </tr>
+                   
                 </table>
-                <br><br><input type="Submit" class="btn btn-primary" value="Create"/>
+                <br><br><input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
             </div>
-            <buuton @click="addRow()" class="btn btn-primary">Add row</button>
         </div>
     </form>
+    <center>
+        <button onclick="addRow()" class="btn btn-primary">Add row</button>
+    </center>
+
+    <div id="result"></div>
+
+    <script>
+
+        // ARRAY FOR HEADER.
+        var arrHead = new Array();
+        arrHead = ['', 'No.', 'Part no.', 'Description', 'Quantity', 'Unit market price', 'Markup percentage'];
+        var count =0;
+        var rowCnt;
+        
+
+        // ADD A NEW ROW TO THE TABLE.s
+        function addRow() {
+            console.log(count);
+            count++;
+            var empTab = document.getElementById('empTable');
+
+            rowCnt = empTab.rows.length;        // GET TABLE ROW COUNT.
+            var tr = empTab.insertRow(rowCnt);      // TABLE ROW.
+            tr = empTab.insertRow(rowCnt);
+
+            for (var c = 0; c < arrHead.length; c++) {
+                var td = document.createElement('td');          // TABLE DEFINITION.
+                td = tr.insertCell(c);
+
+                if (c == 0) {           // FIRST COLUMN.
+                    // ADD A BUTTON.
+                    var button = document.createElement('input');
+
+                    // SET INPUT ATTRIBUTE.
+                    button.setAttribute('type', 'button');
+                    button.setAttribute('value', 'Remove');
+                    button.setAttribute('class', 'btn btn-danger');
+
+                    // ADD THE BUTTON's 'onclick' EVENT.
+                    button.setAttribute('onclick', 'removeRow(this)');
+
+                    td.appendChild(button);
+                    
+                }
+                else if(c == 1){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('id', 'id_item_no'+ rowCnt);
+                    ele.setAttribute('name', 'item_no');
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 2){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'text');
+                    ele.setAttribute('id', 'id_part_no'+ rowCnt);
+                    ele.setAttribute('name', 'part_no');
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 3){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'text');
+                    ele.setAttribute('id', 'id_description'+ rowCnt);
+                    ele.setAttribute('name', 'description');
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 4){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('id', 'id_quantity'+ rowCnt);
+                    ele.setAttribute('name', 'quantity');
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 5){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('id', 'id_unit_market_price'+ rowCnt);
+                    ele.setAttribute('name', 'unit_market_price');
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 6){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('name', 'markup_percentage');
+                    ele.setAttribute('id', 'id_markup_percentage'+ rowCnt);
+
+                    td.appendChild(ele);
+                }
+            }
+        }
+        // DELETE TABLE ROW.
+        function removeRow(oButton) {
+            var empTab = document.getElementById('empTable');
+            empTab.deleteRow(oButton.parentNode.parentNode.rowIndex);       // BUTTON -> TD -> TR.
+        }
+
+
+        function convertToJson() {
+            var obj = $(".input-form").serializeToJSON({
+
+            });
+
+            var jsonString = JSON.stringify(obj);
+            var itemNo= [];
+            var partNo= [];
+            var description= [];
+            var quantity= [];
+            var unitMarketPrice= [];
+            var markupPercentage= [];
+
+            
+
+            for(i=1; i<= rowCnt ; i=i+2 ){
+                itemNo[i] = document.getElementById('id_item_no'+ i).value;
+                partNo[i] = document.getElementById('id_part_no'+ i).value;
+                description[i] = document.getElementById('id_description'+ i).value;
+                quantity[i] = document.getElementById('id_quantity'+ i).value;
+                unitMarketPrice[i] = document.getElementById('id_unit_market_price'+ i).value;
+                markupPercentage[i] = document.getElementById('id_markup_percentage'+ i).value;
+
+            }
+            dataJson =[];
+            for(i=1, j=0; i<= rowCnt; i=i+2, j++ ){
+                dataJson[j] = {
+                    'item_no' : itemNo[i],
+                    'part_no' : partNo[i],
+                    'description' : description[i],
+                    'quantity' : quantity[i],
+                    'unit_market_price' : unitMarketPrice[i],
+                    'markup_percentage' : markupPercentage[i],
+                }
+            }
+            generalData = {
+                'file_name': document.getElementById('id_file_name').value,
+                'organization_name': document.getElementById('id_organization_name').value,
+                'project_type': document.getElementById('id_project_type').value,
+                'reference_number': document.getElementById('id_reference_number').value,
+                'our_reference_number': document.getElementById('id_our_reference_number').value,
+                'date': document.getElementById('id_date').value,                
+            }
+            console.log(dataJson);
+            console.log("before json");
+
+            $.ajax({
+                url: '/ajax/result/',
+                data : { 'values': JSON.stringify(dataJson),
+                         'general': JSON.stringify(generalData)
+            },
+                method: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data){
+                    alert(data);
+                    
+                },
+                failure: function(data) { 
+                    alert('Something wrong happened');
+                    
+                }
+            });
+
+        }
+                    
+
+
+    </script>
    
 {% endblock content %}
