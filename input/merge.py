@@ -17,8 +17,9 @@ def merge(jsonData, generalData):
     part_no = []
     description = []
     quantity = []
+    total = 0
 
-    for i in range(len(jsonData)) :
+    for i in range(len(jsonData)):
         unit_market_price.append(jsonData[i]['unit_market_price'])
         markup_percentage.append(jsonData[i]['markup_percentage'])
         item_no.append(jsonData[i]['item_no'])
@@ -27,6 +28,11 @@ def merge(jsonData, generalData):
         quantity.append(jsonData[i]['quantity'])
 
 
+    for i in range(len(jsonData)):
+        total = total + (calculateUitPrice(float(unit_market_price[i]),float(markup_percentage[i])) * float(quantity[i]))
+        
+    print(total) 
+    total="200" 
     
 
     template = 'master.docx'
@@ -38,6 +44,7 @@ def merge(jsonData, generalData):
         reference = reference,
         our_ref_no = our_reference,
         date = date,
+        total = total,
     )
     item_table = [
     {
@@ -60,4 +67,4 @@ def merge(jsonData, generalData):
     document.merge_rows('item_no', item_table)
     document.write('documents/'+name+'.docx')
 
-    return JsonResponse("Document written successfully")
+    return JsonResponse("Document written successfully", safe=False)
