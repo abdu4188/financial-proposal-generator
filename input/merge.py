@@ -32,7 +32,7 @@ def merge(jsonData, generalData):
         total = total + (calculateUitPrice(float(unit_market_price[i]),float(markup_percentage[i])) * float(quantity[i]))
         
     print(total) 
-    total="200" 
+    total= str(total)
     
 
     template = 'master.docx'
@@ -67,4 +67,4 @@ def merge(jsonData, generalData):
     document.merge_rows('item_no', item_table)
     document.write('documents/'+name+'.docx')
 
-    return JsonResponse("Document written successfully", safe=False)
+    return JsonResponse("Document written successfully")
