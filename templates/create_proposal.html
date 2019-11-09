@@ -54,6 +54,7 @@
         </div>
     </form>
     <button style="margin-left: 80vw; margin-bottom: 10vh;" onclick="addRow()" class="btn btn-warning">Add row</button>
+    <iframe id="my_iframe" style="display:none;"></iframe>
     <script>
 
         // ARRAY FOR HEADER.
@@ -206,14 +207,25 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (data){
+                    Download(document.getElementById('id_file_name').value);
                     alert(data);
                     
                 },
-                failure: function(data) { 
-                    alert('Something wrong happened');
+                error: function(data) { 
+                    alert("something went wrong");
                     
                 }
             });
+
+            function Download(desiredLink) {
+                var a = $('<a />');
+                a.attr('download',desiredLink);
+                desiredLink = {{MEDIA_URL}}  +desiredLink+'.docx';
+                a.attr('href',desiredLink);
+                a.attr('class','btn btn-warning');
+                a.text("Download");
+                $('body').append(a);
+            };
 
         }
                     

@@ -18,5 +18,7 @@ def resultPage(request):
     generalData = json.loads(generalData)
     
     merge(jsonData, generalData)
+    return JsonResponse("Document written successfully", safe=False)
 
-    return render(request, 'result.html')
+
+    # return render(request, 'result.html')
