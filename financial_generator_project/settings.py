@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'financial_generator_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd10vrgk5c0ork3',
+        'USER': 'hdgedymhozqgbk',
+        'PASSWORD': 'e86ae9d7535e0e1e2a734f088c0911097054efbfc8ea0b836b095068421d1c83',
+        'HOST': 'ec2-50-17-227-28.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
