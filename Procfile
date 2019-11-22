@@ -1,1 +1,1 @@
-web: gunicorn financial_generator.wsgi
+web: gunicorn financial_generator_project.wsgi
