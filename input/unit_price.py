@@ -12,4 +12,4 @@ def calculateUitPrice(unit_market_price, markup_percentage):
     costOfGoods = afterSurtax + withHoldingTax
     unitSalesPrice = costOfGoods + (costOfGoods * (markup_percentage/100))
     
-    return unitSalesPrice
+    return round(unitSalesPrice, 2)
