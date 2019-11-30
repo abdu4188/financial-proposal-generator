@@ -23,6 +23,10 @@
         </div>
         <div class="row col-sm-12">
             <div class="col-sm-9" style="margin-left: 10vw;">
+                <div class="col-sm-4">
+                <label><Strong>Exchange Rate:</Strong></label>
+                {{form.exchange_rate}}
+                </div><br><br>
                 <table id="empTable" class="table-striped" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
                     <tr>
                         <th>
@@ -195,7 +199,8 @@
                 'project_type': document.getElementById('id_project_type').value,
                 'reference_number': document.getElementById('id_reference_number').value,
                 'our_reference_number': document.getElementById('id_our_reference_number').value,
-                'date': document.getElementById('id_date').value,                
+                'date': document.getElementById('id_date').value,
+                'exchange_rate': document.getElementById('id_exchange_rate').value,                
             }
 
             $.ajax({

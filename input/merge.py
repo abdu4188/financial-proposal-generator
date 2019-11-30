@@ -10,6 +10,7 @@ def merge(jsonData, generalData):
     reference = generalData['reference_number']
     our_reference = generalData['our_reference_number']
     date = generalData['date']
+    exchange_rate = generalData['exchange_rate']
 
     unit_market_price = []
     markup_percentage = []
@@ -20,7 +21,8 @@ def merge(jsonData, generalData):
     total = 0
 
     for i in range(len(jsonData)):
-        unit_market_price.append(jsonData[i]['unit_market_price'])
+        ump = float(jsonData[i]['unit_market_price']) * float(exchange_rate)
+        unit_market_price.append(ump)
         markup_percentage.append(jsonData[i]['markup_percentage'])
         item_no.append(jsonData[i]['item_no'])
         part_no.append(jsonData[i]['part_no'])
@@ -52,11 +54,11 @@ def merge(jsonData, generalData):
         'description' : str(data['description']),
         'quantity' : str(data['quantity']),
         'unit_price' : str(calculateUitPrice(
-            float(data['unit_market_price']),
+            (float(data['unit_market_price']) * float(exchange_rate)),
             float(data['markup_percentage']))
         ),
         'total_price' : str(calculateUitPrice(
-            float(data['unit_market_price']),
+            (float(data['unit_market_price']) * float(exchange_rate)),
             float(data['markup_percentage'])) * float(data['quantity']))  
     } 
     for data in jsonData
