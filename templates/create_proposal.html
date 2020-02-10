@@ -1,66 +1,81 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="container full" style="margin-top: 5vh;">
+        <div class="card">
+            <div class="card-header">
+                <center><h3><em>New Financial Proposal</em></h3></center>
+            </div>
+            <div class=" card-body">
+                <form class="input-form form-group" action="/result" method="post"> {% csrf_token %}
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4" style="margin-left: 10vw;">
+                                <label><Strong>File name:</Strong></label>
+                                {{form.file_name}}
+                                <label><Strong>Organization name:</Strong></label>
+                                {{form.organization_name}}
+                                <label><Strong>Project name:</Strong></label>
+                                {{form.project_type}}
+                                <label><Strong>Refrence number:</Strong></label>
+                                {{form.reference_number}}
+                                <label><Strong>Our reference number:</Strong></label>
+                                {{form.our_reference_number}}
+                                <label><Strong>Date:</Strong></label>
+                                {{form.date}}<br><br>
+                                
+                        </div>
+                    </div>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-9" style="margin-left: 10vw;">
+                            <div class="col-sm-4">
+                            <label><Strong>Exchange Rate:</Strong></label>
+                            {{form.exchange_rate}}
+                            </div><br><br>
+                            <table id="empTable" class="table-striped input-table" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
+                                <tr>
+                                    <th>
+                                        <h5></h5>
+                                    </th>
+                                    <th>
+                                        <h5>No.</h5>
+                                    </th>
+                                    <th>
+                                        <h5>Part no.</h5>
+                                    </th>
+                                    <th style="width:30vw">
+                                        <h5>Description</h5>
+                                    </th>
+                                    <th>
+                                        <h5>Quantity</h5>
+                                    </th>
+                                    <th>
+                                        <h5>Unit Market price</h5>
+                                    </th>
+                                    <th>
+                                        <h5>Markup percentage</h5>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:addRow();" class="add-row-btn btn btn-warning">Add row</a>
+                                    </th>
+                                </tr>
+                               
+                            </table><br><br>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="download"></div>
 
-    <form class="input-form form-group" action="/result" method="post"> {% csrf_token %}
-        <div class="row col-sm-12">
-            <div class="col-sm-4" style="margin-left: 10vw;">
-                <h3><em>New Financial Proposal</em></h3>
-                    <label><Strong>File name:</Strong></label>
-                    {{form.file_name}}
-                    <label><Strong>Organization name:</Strong></label>
-                    {{form.organization_name}}
-                    <label><Strong>Project name:</Strong></label>
-                    {{form.project_type}}
-                    <label><Strong>Refrence number:</Strong></label>
-                    {{form.reference_number}}
-                    <label><Strong>Our reference number:</Strong></label>
-                    {{form.our_reference_number}}
-                    <label><Strong>Date:</Strong></label>
-                    {{form.date}}<br><br>
-                    
-            </div>
-        </div>
-        <div class="row col-sm-12">
-            <div class="col-sm-9" style="margin-left: 10vw;">
-                <div class="col-sm-4">
-                <label><Strong>Exchange Rate:</Strong></label>
-                {{form.exchange_rate}}
-                </div><br><br>
-                <table id="empTable" class="table-striped input-table" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
-                    <tr>
-                        <th>
-                            <h5></h5>
-                        </th>
-                        <th>
-                            <h5>No.</h5>
-                        </th>
-                        <th>
-                            <h5>Part no.</h5>
-                        </th>
-                        <th style="width:30vw">
-                            <h5>Description</h5>
-                        </th>
-                        <th>
-                            <h5>Quantity</h5>
-                        </th>
-                        <th>
-                            <h5>Unit Market price</h5>
-                        </th>
-                        <th>
-                            <h5>Markup percentage</h5>
-                        </th>
-                        <th>
-                            <a href="javascript:addRow();" class="add-row-btn btn btn-warning">Add row</a>
-                        </th>
-                    </tr>
-                   
-                </table>
-                <div class="download"></div>
-                <br><br><input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
-            </div>
-        </div>
-    </form>
     <script>
 
         // ARRAY FOR HEADER.
@@ -103,6 +118,8 @@
                     ele.setAttribute('type', 'number');
                     ele.setAttribute('id', 'id_item_no'+ rowCnt);
                     ele.setAttribute('name', 'item_no');
+                    ele.setAttribute('value', 0);
+
 
 
                     td.appendChild(ele);
@@ -130,6 +147,7 @@
                     ele.setAttribute('type', 'number');
                     ele.setAttribute('id', 'id_quantity'+ rowCnt);
                     ele.setAttribute('name', 'quantity');
+                    ele.setAttribute('value', 0);
 
 
                     td.appendChild(ele);
@@ -139,6 +157,7 @@
                     ele.setAttribute('type', 'number');
                     ele.setAttribute('id', 'id_unit_market_price'+ rowCnt);
                     ele.setAttribute('name', 'unit_market_price');
+                    ele.setAttribute('value', 0);
 
 
                     td.appendChild(ele);
@@ -148,6 +167,7 @@
                     ele.setAttribute('type', 'number');
                     ele.setAttribute('name', 'markup_percentage');
                     ele.setAttribute('id', 'id_markup_percentage'+ rowCnt);
+                    ele.setAttribute('value', 0);
 
                     td.appendChild(ele);
                 }

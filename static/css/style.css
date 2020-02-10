@@ -25,7 +25,7 @@ header{
     margin: 1vh;
 }
 .input-table input{
-    width: 11vw;
+    width: 8vw;
 }
 .login{
     width: 30vw;
@@ -41,4 +41,10 @@ header{
 }
 .login .body{
     margin: 1vh;
+}
+.records-table{
+    margin-top: 10vh;
+}
+.full{
+    margin-top: 5vh;
 }

@@ -4,6 +4,7 @@ from .forms import createNewFinancial
 from .merge import merge
 import json
 from django.http import JsonResponse
+from.models import Record
 
 def inputPage(request):
     
@@ -19,6 +20,9 @@ def resultPage(request):
     
     merge(jsonData, generalData)
     return JsonResponse("Document written successfully", safe=False)
+
+def documents(request):
+    return render(request, 'documents.html', {'record': Record.objects.all()})
 
 
     # return render(request, 'result.html')

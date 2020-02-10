@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.inputPage, name='home'),
     # path('result/', views.resultPage, name='result'),
     path('ajax/result/', views.resultPage, name='ajax'),
-    path('login/', LoginView.as_view())
+    path('login/', LoginView.as_view()),
+    path('records/', views.documents, name= 'records')
 ]

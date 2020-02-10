@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/style.css'%} ">
+    <script src=" {% static 'jquery.min.js' %}"></script>
+    <script src=" {% static 'jquery.serializeToJSON.js' %}"></script>
+    <title>Previously generated documents</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <a class="navbar-brand" href="#"><img class="logo" src= {% static 'images/UT.png'%} alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="">Documents<span class="sr-only">(current)</span></a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <header>
+            <center>
+                <h2>UT Solutions Financial proposal Generator</h2>
+            </center>
+        </header>
+    </div>
+
+    <div class="logout">
+        <div class="card">
+            <div class="card-body">
+                {% if user.is_authenticated %}
+                <h4> Hello, {{user.username}}</h4>
+                <h5><a class="btn btn-primary" href="{% url 'logout' %}">Logout</a></h5>
+                
+                {% else %}
+                <p> You are not logged in</p>
+                <a href="{% url 'login' %}">Login</a>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 10vh;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Organization</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for document in record%}
+                <tr>
+                    <th scope="row">{{document.organization}}</th>
+                    <td>{{document.project_type}}</td>
+                    <td>{{document.date}}</td>
+                    <td> <a class="btn btn-primary" href="{{MEDIA_URL}}{{document.path}}">Download</a></td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

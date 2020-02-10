@@ -1,6 +1,8 @@
 from mailmerge import MailMerge
 from .unit_price import calculateUitPrice
 from django.http import JsonResponse
+from .models import Record
+from datetime import datetime
 
 def merge(jsonData, generalData):
 
@@ -67,6 +69,12 @@ def merge(jsonData, generalData):
 
     document.merge_rows('item_no', item_table)
     document.write('documents/'+name+'.docx')
+
+    now = datetime.now()
+    # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
+    record = Record(path = name+'.docx', date = now, organization = organization, project_type = project_type)
+    record.save()
 
     return
 

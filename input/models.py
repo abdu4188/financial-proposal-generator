@@ -8,6 +8,7 @@ class CostOfGood(models.Model):
     unitMarketPrice = models.FloatField()
     quantity = models.FloatField()
     markup = models.FloatField()
+    exchange_rate = models.FloatField(default = 0)
 
 class ConstantField(models.Model):
     freightAndInsurance = models.FloatField()
@@ -27,4 +28,8 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
-      
+class Record(models.Model):
+    path = models.CharField(max_length = 200)
+    date = models.DateTimeField(auto_now=True)
+    organization = models.CharField(max_length = 200)
+    project_type = models.CharField(max_length = 200)
