@@ -131,5 +131,7 @@ MEDIA_URL = '/documents/'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
+LOGIN_REDIRECT_URL = '/'
+
 # Activate Django-Heroku.
 # django_heroku.settings(locals())
