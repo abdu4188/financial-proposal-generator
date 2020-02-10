@@ -30,5 +30,7 @@
         "env.bak{,/**}",
         "venv.bak{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/76972a65-0cc5-4520-bd43-938429557ba6/resourceGroups/learn-c015fc5e-20ae-4336-aa7d-e3130b128b9a/providers/Microsoft.Web/sites/ut-financial",
+    "appService.deploySubpath": ""
 }

@@ -27,7 +27,7 @@
                 <label><Strong>Exchange Rate:</Strong></label>
                 {{form.exchange_rate}}
                 </div><br><br>
-                <table id="empTable" class="table-striped" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
+                <table id="empTable" class="table-striped input-table" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
                     <tr>
                         <th>
                             <h5></h5>
@@ -50,15 +50,17 @@
                         <th>
                             <h5>Markup percentage</h5>
                         </th>
+                        <th>
+                            <a href="javascript:addRow();" class="add-row-btn btn btn-warning">Add row</a>
+                        </th>
                     </tr>
                    
                 </table>
+                <div class="download"></div>
                 <br><br><input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
             </div>
         </div>
     </form>
-    <button style="margin-left: 80vw; margin-bottom: 10vh;" onclick="addRow()" class="btn btn-warning">Add row</button>
-    <iframe id="my_iframe" style="display:none;"></iframe>
     <script>
 
         // ARRAY FOR HEADER.
@@ -227,9 +229,9 @@
                 a.attr('download',desiredLink);
                 desiredLink = {{MEDIA_URL}}  +desiredLink+'.docx';
                 a.attr('href',desiredLink);
-                a.attr('class','btn btn-warning');
+                a.attr('class','download-btn btn btn-warning');
                 a.text("Download");
-                $('body').append(a);
+                $('.download').append(a);
             };
 
         }

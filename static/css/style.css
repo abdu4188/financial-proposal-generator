@@ -1,0 +1,44 @@
+body{
+    padding-top: 12vh;
+
+}
+nav{
+    background-color: rgba(0, 54, 155, 0.836);
+}
+.logo{
+    width: 10vw;
+    height: 7vh;
+}
+header{
+    /* box-shadow:  -6px 7px rgba(46, 45, 45, 0.884); */
+    background-color: rgba(0, 54, 155, 0.836);
+    color: white;
+}
+.logout{
+    margin-left: 80vw;
+    margin-top: 5vh;
+}
+.card{
+    box-shadow:  -6px 7px rgba(46, 45, 45, 0.884);
+}
+.add-row-btn{
+    margin: 1vh;
+}
+.input-table input{
+    width: 11vw;
+}
+.login{
+    width: 30vw;
+    margin-top: 3vh;
+    box-shadow:  0px 0px;
+}
+.login-header {
+    box-shadow:  0px 0px;
+}
+.login .card-header{
+    background-color: rgba(0, 54, 155, 0.836);
+    color: #fff;
+}
+.login .body{
+    margin: 1vh;
+}

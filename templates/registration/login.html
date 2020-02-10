@@ -1,11 +1,43 @@
-{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
 
 {% block content %}
-
-    <h2>Login</h2>
-    <form method="post" action=""> {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/style.css'%} ">
+    <script src=" {% static 'jquery.min.js' %}"></script>
+    <script src=" {% static 'jquery.serializeToJSON.js' %}"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <header class="login-header">
+            <center>
+                <h2>UT Solutions Financial proposal Generator</h2>
+            </center>
+        </header>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="login card">
+                    <div class="card-header">
+                        <center><h2>Login</h2></center>
+                    </div>
+                    <div class="body">
+                        <form method="post" action=""> {% csrf_token %}
+                            {{form.as_p}}
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
 {% endblock content %}
