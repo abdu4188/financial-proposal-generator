@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{{ form.media }}  
 {% block content %}
     <div class="container full" style="margin-top: 5vh; margin-bottom: 10vh;">
         <div class="card">
@@ -10,6 +10,7 @@
                 <form class="input-form form-group" action="/result" method="post"> {% csrf_token %}
                     <div class="row col-sm-12">
                         <div class="col-sm-4" style="margin-left: 10vw;">
+                            {{ form.media }}
                             <label><Strong>File name:</Strong></label>
                             {{form.file_name}}
                             <label><Strong>Organization name:</Strong></label>
