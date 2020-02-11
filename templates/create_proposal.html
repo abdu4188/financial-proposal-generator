@@ -10,19 +10,18 @@
                 <form class="input-form form-group" action="/result" method="post"> {% csrf_token %}
                     <div class="row col-sm-12">
                         <div class="col-sm-4" style="margin-left: 10vw;">
-                                <label><Strong>File name:</Strong></label>
-                                {{form.file_name}}
-                                <label><Strong>Organization name:</Strong></label>
-                                {{form.organization_name}}
-                                <label><Strong>Project name:</Strong></label>
-                                {{form.project_type}}
-                                <label><Strong>Refrence number:</Strong></label>
-                                {{form.reference_number}}
-                                <label><Strong>Our reference number:</Strong></label>
-                                {{form.our_reference_number}}
-                                <label><Strong>Date:</Strong></label>
-                                {{form.date}}<br><br>
-                                
+                            <label><Strong>File name:</Strong></label>
+                            {{form.file_name}}
+                            <label><Strong>Organization name:</Strong></label>
+                            {{form.organization_name}}
+                            <label><Strong>Project name:</Strong></label>
+                            {{form.project_type}}
+                            <label><Strong>Refrence number:</Strong></label>
+                            {{form.reference_number}}
+                            <label><Strong>Our reference number:</Strong></label>
+                            {{form.our_reference_number}}
+                            <label><Strong>Date:</Strong></label>
+                            {{form.date}}<br><br>
                         </div>
                     </div>
                     <div class="row col-sm-12">
@@ -31,55 +30,53 @@
                             <label><Strong>Exchange Rate:</Strong></label>
                             {{form.exchange_rate}}
                             </div><br><br>
+                        </div>
+                    </div>
+            </div>
+            <table id="empTable" class="table-striped input-table" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
+                <tr>
+                    <th>
+                        <h5></h5>
+                    </th>
+                    <th>
+                        <h5>No.</h5>
+                    </th>
+                    <th>
+                        <h5>Part no.</h5>
+                    </th>
+                    <th style="width:30vw">
+                        <h5>Description</h5>
+                    </th>
+                    <th>
+                        <h5>Quantity</h5>
+                    </th>
+                    <th>
+                        <h5>Unit Market price</h5>
+                    </th>
+                    <th>
+                        <h5>Markup percentage</h5>
+                    </th>
+                    <th>
+                        <a href="javascript:addRow();" class="add-row-btn btn btn-warning">Add row</a>
+                    </th>
+                </tr>
+                
+            </table><br><br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
+                </div>
+                <div class="col-sm-4">
+                    <div class="download"></div>
 
+                </div>
             </div>
         </div>
     </div>
-                            <table id="empTable" class="table-striped input-table" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
-                                <tr>
-                                    <th>
-                                        <h5></h5>
-                                    </th>
-                                    <th>
-                                        <h5>No.</h5>
-                                    </th>
-                                    <th>
-                                        <h5>Part no.</h5>
-                                    </th>
-                                    <th style="width:30vw">
-                                        <h5>Description</h5>
-                                    </th>
-                                    <th>
-                                        <h5>Quantity</h5>
-                                    </th>
-                                    <th>
-                                        <h5>Unit Market price</h5>
-                                    </th>
-                                    <th>
-                                        <h5>Markup percentage</h5>
-                                    </th>
-                                    <th>
-                                        <a href="javascript:addRow();" class="add-row-btn btn btn-warning">Add row</a>
-                                    </th>
-                                </tr>
-                               
-                            </table><br><br>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="download"></div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </form>
     
 
     <script>
-
         // ARRAY FOR HEADER.
         var arrHead = new Array();
         arrHead = ['', 'No.', 'Part no.', 'Description', 'Quantity', 'Unit market price', 'Markup percentage'];
