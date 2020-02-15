@@ -22,7 +22,7 @@
                             <label><Strong>Our reference number:</Strong></label>
                             {{form.our_reference_number}}
                             <label><Strong>Date:</Strong></label>
-                            {{form.date}}<br><br>
+                            {{form.date}}<p style="color: red;">*required</p><br>
                         </div>
                     </div>
                     <div class="row col-sm-12">
@@ -63,7 +63,15 @@
                 </tr>
                 
             </table><br><br>
-            <div class="row">
+            <div class="row col-sm-12">
+                <div class="col-sm-9" style="margin-left: 10vw;">
+                    <div class="col-sm-4">
+                    <label><Strong>Notes:</Strong></label>
+                    {{form.notes}}
+                    </div><br><br>
+                </div>
+            </div>
+            <br><br><div class="row">
                 <div class="col-sm-4">
                     <input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
                 </div>
@@ -222,7 +230,8 @@
                 'reference_number': document.getElementById('id_reference_number').value,
                 'our_reference_number': document.getElementById('id_our_reference_number').value,
                 'date': document.getElementById('id_date').value,
-                'exchange_rate': document.getElementById('id_exchange_rate').value,                
+                'exchange_rate': document.getElementById('id_exchange_rate').value,
+                'notes': document.getElementById('id_notes').value,                
             }
 
             $.ajax({

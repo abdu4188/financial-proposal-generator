@@ -12,7 +12,10 @@ def merge(jsonData, generalData):
     reference = generalData['reference_number']
     our_reference = generalData['our_reference_number']
     date = generalData['date']
+    datetimeobject = datetime.strptime(date,'%m/%d/%Y')
+    date = datetimeobject.strftime('%B %d, %Y')
     exchange_rate = generalData['exchange_rate']
+    notes = generalData['notes']
 
     unit_market_price = []
     markup_percentage = []
@@ -47,6 +50,7 @@ def merge(jsonData, generalData):
         reference = reference,
         our_ref_no = our_reference,
         date = date,
+        notes = notes,
         total = total,
     )
     item_table = [
