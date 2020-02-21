@@ -1,15 +1,18 @@
 from django import forms
 from bootstrap_datepicker_plus import DatePickerInput
 from django.db import models
+from datetime import datetime
 class createNewFinancial(forms.Form):
     file_name = forms.CharField(widget= forms.TextInput(attrs ={'class': 'form-control'}))
     organization_name = forms.CharField(widget= forms.TextInput(attrs ={'class': 'form-control'}))
     project_type = forms.CharField(widget= forms.TextInput(attrs ={'class': 'form-control'}))
     reference_number = forms.CharField(widget= forms.TextInput(attrs ={'class': 'form-control'}))
     our_reference_number = forms.CharField(widget= forms.TextInput(attrs ={'class': 'form-control'}))
+    dateTimeObj = datetime.now()
+    timestampStr = dateTimeObj.strftime("%m/%d/%Y")
     date = forms.DateField(
         required = True,
-        widget=DatePickerInput(format='%m/%d/%Y', attrs={'required': 'required'})
+        widget=DatePickerInput(format='%m/%d/%Y', attrs={'required': 'required', 'value': timestampStr})
     )
     item_no = forms.FloatField(widget= forms.TextInput(attrs ={'class': 'form-control', 'type': 'number'}))
     part_no = forms.CharField(widget= forms.TextInput(attrs ={'class': 'form-control'}))
