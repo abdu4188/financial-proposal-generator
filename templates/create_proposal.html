@@ -33,7 +33,6 @@
                             </div><br><br>
                         </div>
                     </div>
-            </div>
             <table id="empTable" class="table-striped input-table" border="1" cellmargin="100px" cellpadding="0px"cellspacing="5px">
                 <tr>
                     <th>
@@ -63,6 +62,7 @@
                 </tr>
                 
             </table><br><br>
+
             <div class="row col-sm-12">
                 <div class="col-sm-9" style="margin-left: 10vw;">
                     <div class="col-sm-4">
@@ -71,18 +71,32 @@
                     </div><br><br>
                 </div>
             </div>
-            <br><br><div class="row">
+
+            <div class="row col-sm-12">
+                <div class="col-sm-9" style="margin-left: 10vw;">
+                    <div class="container"style="margin-bottom: 20vw;">
+                        <label><Strong>Choose notes to be included:</Strong></label>
+                        <ul>
+                            {{form.note_choices}}
+                        </ul>
+                    </div><br><br>
+                </div>
+            </div>
+
+        <br><br>
+            <div class="row">
                 <div class="col-sm-4">
-                    <input type="button" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
+                    <input type="button" id="create" onclick="convertToJson()" class="btn btn-primary" value="Create"/>
                 </div>
                 <div class="col-sm-4">
                     <div class="download"></div>
-
                 </div>
             </div>
         </div>
     </div>
                 </form>
+            </div>
+
     
 
     <script>
@@ -193,6 +207,10 @@
 
             });
 
+            var selectedCheckboxes = $('input[type=checkbox]:checked').map(function(_, el) {
+                return $(el).val();
+            }).get();
+
             var jsonString = JSON.stringify(obj);
             var itemNo= [];
             var partNo= [];
@@ -231,7 +249,8 @@
                 'our_reference_number': document.getElementById('id_our_reference_number').value,
                 'date': document.getElementById('id_date').value,
                 'exchange_rate': document.getElementById('id_exchange_rate').value,
-                'notes': document.getElementById('id_notes').value,                
+                'notes': document.getElementById('id_notes').value, 
+                'vat': selectedCheckboxes,               
             }
 
             $.ajax({

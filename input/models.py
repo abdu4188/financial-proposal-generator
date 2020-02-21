@@ -33,3 +33,12 @@ class Record(models.Model):
     date = models.DateTimeField(auto_now=True)
     organization = models.CharField(max_length = 200)
     project_type = models.CharField(max_length = 200)
+class Choices(models.Model):
+    vat = models.BooleanField("Vat note", default = True)
+    price_valid = models.BooleanField("Price validity", default = False)
+    price_birr = models.BooleanField("Price in Birr", default = False)
+    delivery = models.BooleanField("Delivery", default = False)
+    payment_term = models.BooleanField("Payment term",default = False)
+    installation = models.BooleanField("Installation", default = False)
+    discrepancy = models.BooleanField("Price discrepancy", default = False)
+    

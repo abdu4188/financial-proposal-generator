@@ -16,6 +16,33 @@ def merge(jsonData, generalData):
     date = datetimeobject.strftime('%B %d, %Y')
     exchange_rate = generalData['exchange_rate']
     notes = generalData['notes']
+    
+    note =[]
+    note.append('Please add 15% VAT')
+    note.append('Price is valid for 45 days')
+    note.append('All price is in Ethiopian Birr')
+    note.append('Delivery will be within 45 days after PO, advance and bank foreign currency approval')
+    note.append('Payment Term 50% advance and remaining amount after delivery')
+    note.append('Installation is NOT part of this Quote')
+    note.append('If there is discrepancy in price calculation the unit price will prevail')
+
+    selectedNotes = []
+    for x in generalData['vat']:
+        selectedNotes.append(int(x))
+    
+    temp = [0,1,2,3,4,5,6]
+    for selected in selectedNotes:
+        temp[selected]= ''
+    
+    temp_note = ['','','','','','','']    
+    
+    for y in [0,1,2,3,4,5,6]:
+        if temp[y] == '':
+            temp_note[y] = note[y]
+                
+    for elem in temp_note:
+        if elem == '':
+            temp_note.remove(elem)
 
     unit_market_price = []
     markup_percentage = []
@@ -68,14 +95,20 @@ def merge(jsonData, generalData):
             float(data['markup_percentage'])) * float(data['quantity']))  
     } 
     for data in jsonData
-]
+    ]
 
+    reminder_table=[
+        {
+            'reminder': temp_reminder
+        }
+        for temp_reminder in temp_note
+    ]
 
     document.merge_rows('item_no', item_table)
+    document.merge_rows('reminder', reminder_table)
     document.write('documents/'+name+'.docx')
 
     now = datetime.now()
-    # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
     record = Record(path = name+'.docx', date = now, organization = organization, project_type = project_type)
     record.save()
