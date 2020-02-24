@@ -7,7 +7,7 @@ Unipath==1.0
 python-decouple==3
 Pillow==6.2.0
 Markdown==2.6.6
-bleach==1.4.3
+bleach==3.1.1
 # psycopg2==2.7.1
 whitenoise==4.1.4
 django-bootstrap-datepicker-plus==3.0.5
