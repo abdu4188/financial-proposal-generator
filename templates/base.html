@@ -1,9 +1,4 @@
 {% load static %}
-{% load bootstrap4 %}       
-{% bootstrap_css %}         
-{% bootstrap_javascript jquery='full' %}  
-{{ form.media }}
-
 <!Doctype html>
 <html>
     <head>
@@ -11,12 +6,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-        <link rel="stylesheet" href=" {% static 'css/style.css'%} ">
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <script src=" {% static 'jquery.min.js' %}"></script>
-        <!-- <script type="text/javascript" src="{{ STATIC_URL }}/jquery.min.js" /> -->
+        <script src=" {% static 'bootstrap/bootstrap.min.js' %}"></script>
+        {% load bootstrap4 %}       
+        {% bootstrap_css %}         
+        {% bootstrap_javascript jquery='full' %}  
+        {{ form.media }}
+        <link rel="stylesheet" href=" {% static 'css/style.css'%} ">
         <script src=" {% static 'jquery.serializeToJSON.js' %}"></script>
-        
+        <script src=" {% static 'vue.js' %}"></script>
+
+
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top ">

@@ -10,7 +10,7 @@ nav{
     height: 7vh;
 }
 header{
-    /* box-shadow:  -6px 7px rgba(46, 45, 45, 0.884); */
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     background-color: rgba(0, 54, 155, 0.836);
     color: white;
 }
@@ -21,11 +21,14 @@ header{
 .card{
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+.full .card{
+    padding: 3vw;
+}
 .add-row-btn{
     margin: 1vh;
 }
 .input-table input{
-    width: 8vw;
+    width: 7vw;
 }
 .login{
     width: 30vw;
@@ -47,4 +50,7 @@ header{
 }
 .full{
     margin-top: 5vh;
+}
+#id_description1{
+    width: 20vw;
 }

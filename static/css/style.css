@@ -28,7 +28,7 @@ header{
     margin: 1vh;
 }
 .input-table input{
-    width: 8vw;
+    width: 7vw;
 }
 .login{
     width: 30vw;
@@ -52,5 +52,5 @@ header{
     margin-top: 5vh;
 }
 #id_description1{
-    width: 23vw;
+    width: 20vw;
 }

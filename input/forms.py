@@ -20,7 +20,7 @@ class createNewFinancial(forms.Form):
     quantity = forms.FloatField(widget= forms.TextInput(attrs ={'class': 'form-control', 'type': 'number'}))
     unit_market_price = forms.FloatField(widget= forms.TextInput(attrs ={'class': 'form-control', 'type': 'number'}))
     markup_percentage = forms.FloatField(widget= forms.TextInput(attrs ={'class': 'form-control', 'type': 'number'}))
-    exchange_rate = forms.FloatField(widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'step': '0.01', 'value': '0',}), initial = 0)
+    exchange_rate = forms.FloatField(widget = forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'step': '0.01', 'value': '0',}), initial = 1)
     notes = forms.CharField(widget = forms.Textarea(attrs ={'class': 'form-control'}))
     NOTES_OPTIONS = (
         ('0', 'Please add 15% VAT'),

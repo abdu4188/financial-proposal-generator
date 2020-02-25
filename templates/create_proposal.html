@@ -21,8 +21,8 @@
                             {{form.reference_number}}
                             <label><Strong>Our reference number:</Strong></label>
                             {{form.our_reference_number}}
-                            <label><Strong>Date:</Strong></label>
-                            {{form.date}}<p style="color: red;">*required</p><br>
+                            <label><Strong>Date:</Strong></label><br><br>
+                            {{form.date}}
                         </div>
                     </div>
                     <div class="row col-sm-12">
@@ -102,13 +102,16 @@
     <script>
         // ARRAY FOR HEADER.
         var arrHead = new Array();
-        arrHead = ['', 'No.', 'Part no.', 'Description', 'Quantity', 'Unit market price', 'Markup percentage'];
+        arrHead = ['', 'No.', 'Part no.', 'Description', 'Quantity', 'Unit market price', 'Markup percentage',''];
         var count =0;
         var rowCnt;
         
 
         // ADD A NEW ROW TO THE TABLE.s
         function addRow() {
+            if(subExists != 0){
+                sum(subExists);
+            }
             count++;
             var empTab = document.getElementById('empTable');
 
@@ -193,12 +196,144 @@
 
                     td.appendChild(ele);
                 }
+                else if(c == 7){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'button');
+                    ele.setAttribute('class','btn btn-primary');
+                    ele.setAttribute('onclick', 'makeSub(this)')
+                    ele.setAttribute('name', 'markup_percentage');
+                    ele.setAttribute('id', 'id_markup_percentage'+ rowCnt);
+                    ele.setAttribute('value', "Add sub");
+
+                    td.appendChild(ele);
+                }
             }
         }
+
+        function addSubRow(id) {
+            count++;
+            var empTab = document.getElementById('empTable');
+
+            rowCnt = empTab.rows.length;        // GET TABLE ROW COUNT.
+            var tr = empTab.insertRow(rowCnt);      // TABLE ROW.
+            tr = empTab.insertRow(rowCnt);
+
+            for (var c = 0; c < arrHead.length; c++) {
+                var td = document.createElement('td');          // TABLE DEFINITION.
+                td = tr.insertCell(c);
+
+                if (c == 0) {           // FIRST COLUMN.
+                    // ADD A BUTTON.
+                    var button = document.createElement('input');
+
+                    // SET INPUT ATTRIBUTE.
+                    button.setAttribute('type', 'button');
+                    button.setAttribute('value', 'Remove');
+                    button.setAttribute('class', 'btn btn-danger');
+
+                    // ADD THE BUTTON's 'onclick' EVENT.
+                    button.setAttribute('onclick', 'removeRow(this)');
+
+                    td.appendChild(button);
+                    
+                }
+                else if(c == 1){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('id', 'id_item_no'+ rowCnt);
+                    ele.setAttribute('name', 'item_no');
+                    ele.setAttribute('value', 0);
+
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 2){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'text');
+                    ele.setAttribute('id', 'id_part_no'+ rowCnt);
+                    ele.setAttribute('name', 'part_no');
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 3){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'text');
+                    ele.setAttribute('id', 'id_description'+ rowCnt);
+                    ele.setAttribute('name', 'description');
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 4){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('class', 'q'+id)
+                    ele.setAttribute('id', 'id_quantity'+ rowCnt);
+                    ele.setAttribute('name', 'quantity');
+                    ele.setAttribute('value', 0);
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 5){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('class', 's'+id)
+                    ele.setAttribute('id', 'id_unit_market_price'+ rowCnt);
+                    ele.setAttribute('name', 'unit_market_price');
+                    ele.setAttribute('value', 0);
+
+
+                    td.appendChild(ele);
+                }
+                else if(c == 6){
+                    var ele = document.createElement('input');
+                    ele.setAttribute('type', 'number');
+                    ele.setAttribute('name', 'markup_percentage');
+                    ele.setAttribute('id', 'id_markup_percentage'+ rowCnt);
+                    ele.setAttribute('value', 0);
+
+                    td.appendChild(ele);
+                }
+            }
+        }
+
+        var subExists=0;
+        
+
+        function sum(id) {
+
+            var unitArr = $('.s'+id).map((i, e) => e.value).get()
+
+            var quanArr = $('.q'+id).map((i, e) => e.value).get()
+
+            var finalArr = []
+            for (let index = 0; index < unitArr.length; index++) {
+                finalArr[index] = unitArr[index] * quanArr[index];
+                
+            }
+
+            sum = finalArr.reduce((a,b) => a + b, 0);
+            $("#id_unit_market_price"+id).val(sum);
+        }
+
+        function makeSub(subRow) {
+            var empTab = document.getElementById('empTable');
+            document.getElementById("id_unit_market_price"+subRow.parentNode.parentNode.rowIndex).value = 0
+            addSubRow(subRow.parentNode.parentNode.rowIndex);
+            subExists  = subRow.parentNode.parentNode.rowIndex;
+            
+            // sum(subRow.parentNode.parentNode.rowIndex)
+        }
+
+        
         // DELETE TABLE ROW.
         function removeRow(oButton) {
             var empTab = document.getElementById('empTable');
-            empTab.deleteRow(oButton.parentNode.parentNode.rowIndex);       // BUTTON -> TD -> TR.
+            empTab.deleteRow(oButton.parentNode.parentNode.rowIndex);
+            rowCnt -=1;       // BUTTON -> TD -> TR.
         }
 
 
@@ -232,6 +367,7 @@
             }
             dataJson =[];
             for(i=1, j=0; i<= rowCnt; i=i+2, j++ ){
+                
                 dataJson[j] = {
                     'item_no' : itemNo[i],
                     'part_no' : partNo[i],
@@ -283,6 +419,8 @@
             };
 
         }
+        
+        
                     
 
 
